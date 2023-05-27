@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Vremia</string>
+    <string name="nocontent_message">There\'s no content.</string>
+    <string name="addtasktoolbar_header">Add a Task</string>
+    <string name="datetimetext">Set the Date and Time</string>
+    <string name="imagepicktext">Set Task Image</string>
+    <string name="set_task_color">Set Task Color</string>
+    <string name="open_color_picker">OPEN COLOR PICKER</string>
+    <string name="open_date_and_time_picker">OPEN DATE AND TIME PICKER</string>
+    <string name="or_type_the_color_s_hexadecimal_value">or Type the Color\'s Hexadecimal Value</string>
+    <string name="ffffff">FFFFFF</string>
+    <string name="edit_a_task">Edit a Task</string>
+</resources>

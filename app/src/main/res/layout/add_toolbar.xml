@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/main_blue"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/canceladdtasktoolbar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="50dp"
+        android:layout_toStartOf="@id/textView_addtaskHeader"
+        android:src="@drawable/close_icon"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/textView_addtaskHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="0dp"
+
+        android:text="@string/addtasktoolbar_header"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/saveaddtasktoolbar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@id/textView_addtaskHeader"
+        android:src="@drawable/check_icon"
+        app:tint="@color/white" />
+
+
+</RelativeLayout>

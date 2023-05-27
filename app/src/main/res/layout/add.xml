@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/default_app_background"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/addtaskToolbar"
+            layout="@layout/add_toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/add_csl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addtaskToolbar"
+            android:layout_centerHorizontal="true"
+            android:background="@color/default_app_background">
+
+            <TextView
+                android:id="@+id/settaskimagetext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:text="@string/imagepicktext"
+                android:textColor="@color/default_text_color"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/editTaskImageSelector"
+                app:layout_constraintHorizontal_bias="0.816"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.511" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/editTaskImageSelector"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginVertical="10dp"
+                android:padding="5dp"
+                android:src="@drawable/image_placeholder"
+                app:civ_border_color="@color/main_blue"
+                app:civ_border_width="5dp"
+                app:civ_circle_background_color="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.803"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/nameanddesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tasktitletext"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center|start"
+                android:text="Task Name:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/editTaskTitleInput"
+                android:layout_below="@id/tasktitletext"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Enter Task Name"
+                android:textSize="17sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/taskdescrtext"
+                android:layout_below="@id/editTaskTitleInput"
+                android:text="Task Description:"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center|start"
+                android:textSize="17sp"/>
+
+            <EditText
+                android:id="@+id/editTaskDescriptionInput"
+                android:layout_below="@id/taskdescrtext"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="30dp"
+                android:hint="Enter Task Description"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/datetimepickercontainer_addtask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/default_app_background"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/editTaskDatePreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="10dp"
+                android:text="@string/datetimetext"
+                android:textColor="@color/default_text_color"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/editTaskOpenDatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editTaskDatePreview"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/main_blue"
+                android:paddingHorizontal="10dp"
+                android:text="@string/open_date_and_time_picker"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/editTaskColorPreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="-4dp"
+            android:background="@color/default_app_background"
+            android:padding="10dp"
+            tools:layout_editor_absoluteX="-10dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <TextView
+                android:id="@+id/settaskcolortext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="@string/set_task_color"
+                android:textColor="@color/default_text_color"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/editTaskColorPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/main_blue"
+                android:paddingHorizontal="15dp"
+                android:text="@string/open_color_picker"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/colorpicker_preview"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/colorpicker_preview" />
+
+            <EditText
+                android:id="@+id/editTaskColorHexInput"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="20dp"
+                android:hint="@string/ffffff"
+                android:inputType="textNoSuggestions"
+                android:paddingHorizontal="15dp"
+                android:textColor="@color/default_text_color"
+                android:textColorHint="@color/material_on_background_disabled"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/colorpickerhexinputtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:paddingHorizontal="15dp"
+                android:text="@string/or_type_the_color_s_hexadecimal_value"
+                android:textColor="@color/default_text_color"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.66" />
+
+            <TextView
+                android:id="@+id/colorpicker_preview"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="28dp"
+                android:background="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</ScrollView>
