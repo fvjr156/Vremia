@@ -8,18 +8,18 @@
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/canceladdtasktoolbar"
+        android:id="@+id/add_toolbar_img_cancel"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="50dp"
-        android:layout_toStartOf="@id/textView_addtaskHeader"
+        android:layout_toStartOf="@id/add_toolbar_txv_header"
         android:src="@drawable/close_icon"
         app:tint="@color/white" />
 
     <TextView
-        android:id="@+id/textView_addtaskHeader"
+        android:id="@+id/add_toolbar_txv_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -31,7 +31,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/saveaddtasktoolbar"
+        android:id="@+id/add_toolbar_img_save"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignParentEnd="true"

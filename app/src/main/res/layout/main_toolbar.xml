@@ -9,7 +9,7 @@
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/headertext"
+        android:id="@+id/main_toolbar_headerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -23,7 +23,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/delete_tasks"
+        android:id="@+id/main_toolbar_img_delete"
         android:layout_width="40dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
