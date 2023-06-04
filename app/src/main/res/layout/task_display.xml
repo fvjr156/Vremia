@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="2dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="0dp"
+        app:cardElevation="25dp">
+
+
+        <RelativeLayout
+            android:id="@+id/task_display_rll_taskContainer"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginHorizontal="1dp"
+            android:background="@color/white"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="12dp">
+
+            <TextView
+                android:id="@+id/task_display_txv_DateTimeDisplay"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/task_display_CIV_ImageView"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:layout_below="@id/task_display_txv_TitleView"
+                android:text="Date: Time:"
+                android:textColor="@color/default_text_color"
+                android:textSize="19sp" />
+
+            <TextView
+                android:id="@+id/task_display_txv_TitleView"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_toEndOf="@id/task_display_CIV_ImageView"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:padding="5sp"
+                android:text="Task Title"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/default_text_color"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/task_display_CIV_ImageView"
+                android:layout_width="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_height="80dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/image_placeholder_foreground"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="1dp"
+                app:civ_circle_background_color="@color/white" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

@@ -37,7 +37,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="50dp"
-        android:layout_toEndOf="@id/textView_addtaskHeader"
+        android:layout_toEndOf="@id/add_toolbar_txv_header"
         android:src="@drawable/check_icon"
         app:tint="@color/white" />
 
