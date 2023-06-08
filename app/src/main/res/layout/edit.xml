@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/default_app_background"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/edit_inclusion_edit_toolbar"
+            layout="@layout/edit_toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/edit_csl_containerForImageSelector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/default_app_background">
+
+            <TextView
+                android:id="@+id/edit_txv_AddImageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:text="@string/imagepicktext"
+                android:textColor="@color/default_text_color"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/edit_CIV_ImageSelector"
+                app:layout_constraintHorizontal_bias="0.816"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.511" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/edit_CIV_ImageSelector"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginVertical="10dp"
+                android:padding="5dp"
+                android:src="@drawable/image_placeholder"
+                app:civ_border_color="@color/main_blue"
+                app:civ_border_width="5dp"
+                app:civ_circle_background_color="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.803"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/edit_rll_containerForTitleDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/edit_txv_TitleInputText"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center|start"
+                android:text="Task Name:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/edit_edt_TitleInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/edit_txv_TitleInputText"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Enter Task Name"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/edit_txv_DescrInputText"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@id/edit_edt_TitleInput"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center|start"
+                android:text="Task Description:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/edit_edt_DescrInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/edit_txv_DescrInputText"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Enter Task Description"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/edit_rll_containerForDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/default_app_background"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/edit_txv_DateTimeInputPreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="10dp"
+                android:text="@string/datetimetext"
+                android:textColor="@color/default_text_color"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/edit_btn_DateTimeInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_txv_DateTimeInputPreview"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/main_blue"
+                android:paddingHorizontal="10dp"
+                android:text="@string/open_date_and_time_picker"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/edit_csl_containerForColorPicker"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="-4dp"
+            android:background="@color/default_app_background"
+            android:padding="10dp"
+            tools:layout_editor_absoluteX="-10dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <TextView
+                android:id="@+id/edit_txv_ColorInputText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="@string/set_task_color"
+                android:textColor="@color/default_text_color"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/edit_btn_ColorPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/main_blue"
+                android:paddingHorizontal="15dp"
+                android:text="@string/open_color_picker"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/edit_txv_ColorPreview"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_txv_ColorPreview" />
+
+            <EditText
+                android:id="@+id/edit_edt_ColorPickerHexadecimalInput"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="20dp"
+                android:hint="@string/ffffff"
+                android:inputType="textNoSuggestions"
+                android:paddingHorizontal="15dp"
+                android:textColor="@color/default_text_color"
+                android:textColorHint="@color/material_on_background_disabled"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/edit_txv_ColorPickerHexadecimalInputText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:paddingHorizontal="15dp"
+                android:text="@string/or_type_the_color_s_hexadecimal_value"
+                android:textColor="@color/default_text_color"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.66" />
+
+            <TextView
+                android:id="@+id/edit_txv_ColorPreview"
+                android:layout_width="120dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="28dp"
+                android:background="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_rll_containerForSaveDelete"
+            android:layout_marginBottom="20dp"
+            >
+
+            <Button
+                android:id="@+id/edit_btn_Delete"
+                android:layout_width="160dp"
+                android:layout_height="45dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="#AA0000"
+                android:paddingHorizontal="15dp"
+                android:text="@string/delete_task"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                />
+
+            <Button
+                android:id="@+id/edit_btn_Overwrite"
+                android:layout_width="160dp"
+                android:layout_height="45dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/main_blue"
+                android:paddingHorizontal="15dp"
+                android:text="@string/upgrade_task"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_below="@id/edit_btn_Delete"
+                />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>

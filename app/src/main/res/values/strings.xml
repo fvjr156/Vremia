@@ -10,4 +10,9 @@
     <string name="or_type_the_color_s_hexadecimal_value">or Type the Color\'s Hexadecimal Value</string>
     <string name="ffffff">FFFFFF</string>
     <string name="edit_a_task">Edit a Task</string>
+    <string name="edit_toolbar_header">Edit a Task</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+    <string name="upgrade_task">UPGRADE TASK</string>
+    <string name="delete_task">DELETE TASK</string>
 </resources>

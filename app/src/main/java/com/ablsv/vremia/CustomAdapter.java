@@ -2,6 +2,7 @@ package com.ablsv.vremia;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -130,6 +131,28 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         String task_date = sdf.format(calendar.getTime());
         holder.date_task.setText((CharSequence) task_date +", "+(CharSequence) task_time);
+
+
+        holder.mainlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, EditTask.class);
+                intent.putExtra("task_id", String.valueOf(task_id.get(position)));
+                intent.putExtra("task_title", String.valueOf(task_title.get(position)));
+                intent.putExtra("task_description", String.valueOf(task_description.get(position)));
+                intent.putExtra("task_color", Integer.parseInt(String.valueOf(task_color.get(position))));
+                intent.putExtra("task_year", Integer.parseInt(String.valueOf(task_year.get(position))));
+                intent.putExtra("task_month", Integer.parseInt(String.valueOf(task_month.get(position))));
+                intent.putExtra("task_dayofmonth", Integer.parseInt(String.valueOf(task_dayofmonth.get(position))));
+                intent.putExtra("task_hour", Integer.parseInt(String.valueOf(task_hour.get(position))));
+                intent.putExtra("task_minute", Integer.parseInt(String.valueOf(task_minute.get(position))));
+               // intent.putExtra("task_imagedata", String.valueOf(task_imagedata.get(position)));
+                activity.startActivity(intent);
+                //TODO: java.lang.RuntimeException: Failure from system
+                activity.finish();
+            }
+        });
+
 
     }
 
