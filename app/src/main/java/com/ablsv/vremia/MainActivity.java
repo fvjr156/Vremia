@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,18 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             task_imagedata;
 
     DrawerLayout main_DrawerLayout;
+    ImageView main_toolbar_img_menu;
     @Override
     protected void onCreate(Bundle sis)
     {
         super.onCreate(sis);
         setContentView(R.layout.main);
-
-        main_DrawerLayout = findViewById(R.id.main_DrawerLayout);
-        NavigationView navigationView = new NavigationView(this);
-        main_DrawerLayout.addView(navigationView);
-        navigationView.inflateMenu(R.menu.navigation_menu);
-
-
 
         main_txv_noData = findViewById(R.id.main_txv_noData);
         main_rcv_taskView = findViewById(R.id.main_rcv_taskView);

@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Vremia"
 include ':app'
+include ':myapplication'
