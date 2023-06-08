@@ -41,11 +41,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             task_hour,
             task_minute,
             task_imagedata;
+
+    DrawerLayout main_DrawerLayout;
     @Override
     protected void onCreate(Bundle sis)
     {
         super.onCreate(sis);
         setContentView(R.layout.main);
+
+        main_DrawerLayout = findViewById(R.id.main_DrawerLayout);
+        NavigationView navigationView = new NavigationView(this);
+        main_DrawerLayout.addView(navigationView);
+        navigationView.inflateMenu(R.menu.navigation_menu);
+
+
 
         main_txv_noData = findViewById(R.id.main_txv_noData);
         main_rcv_taskView = findViewById(R.id.main_rcv_taskView);

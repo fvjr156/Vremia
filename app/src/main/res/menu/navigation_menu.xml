@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single"
+
+>   <item
+        android:id="@+id/menu_add"
+        android:icon="@drawable/baseline_library_add_24"
+        android:title="Add a Task" />
     <item
-        android:id="@+id/menu_item1"
-        android:title="Menu Item 1" />
+        android:id="@+id/menu_set"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Settings" />
     <item
-        android:id="@+id/menu_item2"
-        android:title="Menu Item 2" />
-    <item
-        android:id="@+id/menu_item3"
-        android:title="Menu Item 3" />
+        android:id="@+id/menu_about"
+        android:icon="@drawable/baseline_person_24"
+        android:title="About" />
+    </group>
 </menu>
