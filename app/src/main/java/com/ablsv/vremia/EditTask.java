@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -20,13 +22,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import io.kredibel.picker.Picker;
+import io.kredibel.picker.PickerListener;
 
-public class EditTask extends AppCompatActivity implements View.OnClickListener{
+public class EditTask extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
     ImageView edit_CIV_ImageSelector, edit_toolbar_img_cancel;
     EditText edit_edt_TitleInput, edit_edt_DescrInput, edit_edt_ColorPickerHexadecimalInput;
     Button edit_btn_ColorPicker, edit_btn_DateTimeInput;
@@ -95,15 +101,16 @@ public class EditTask extends AppCompatActivity implements View.OnClickListener{
         int edit_taskDayOfMonth = intent.getIntExtra("task_dayofmonth", 0);
         int edit_taskHour = intent.getIntExtra("task_hour", 0);
         int edit_taskMinute = intent.getIntExtra("task_minute", 0);
-        String edit_taskImagedata = intent.getStringExtra("task_imagedata");
+
+       Base64String b = new Base64String();
+       edit_imagedata64 = b.getBase64string();
 
         edit_edt_TitleInput.setText(edit_taskTitle);
         edit_edt_DescrInput.setText(edit_taskDescr);
 
         if(edit_imagedata64 != null)
         {
-            String base64String = String.valueOf(edit_imagedata64);
-            byte[] byteArray = Base64.decode(base64String, Base64.DEFAULT);
+            byte[] byteArray = Base64.decode(edit_imagedata64, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 
             edit_CIV_ImageSelector.setImageBitmap(bitmap);
@@ -119,41 +126,68 @@ public class EditTask extends AppCompatActivity implements View.OnClickListener{
 
 
     }
-    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
-            // Handle the selected date
-            // The selected year, month, and day will be passed as arguments to this method
-        }
-    };
-    private void showTimePickerDialog() {
-        TimePickerDialog timePickerDialog = new TimePickerDialog(
-                this,
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
-                        // Handle the selected time
-                        // hourOfDay: selected hour
-                        // minute: selected minute
-                    }
-                },
-                hour,
-                minute,
-                true // set to true for 24-hour format
-        );
+    int DatePickerMonth, DatePickerDayofmonth, DatePickerYear, TimePickerHour, TimePickerMinute;
+    @Override
+    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int dayofmonth) {
+        Log.d("year", String.valueOf(year));
+        Log.d("month", String.valueOf(month));
+        Log.d("dayofmonth", String.valueOf(dayofmonth));
 
-        timePickerDialog.show();
+        DatePickerYear = year;
+        DatePickerMonth = month;
+        DatePickerDayofmonth = dayofmonth;
+
     }
 
+    @Override
+    public void onTimeSet(android.widget.TimePicker timePicker, int hour, int minute) {
+        Log.d("hour", String.valueOf(hour));
+        Log.d("minute", String.valueOf(minute));
 
+        TimePickerHour = hour;
+        TimePickerMinute = minute;
+
+        String datetimepreview = (DatePickerMonth+1)+"/"+DatePickerDayofmonth+"/"+DatePickerYear+" - "+TimePickerHour+":"+TimePickerMinute;
+//debug. please add feature that accepts user's date preference or phone regional date settings
+        edit_txv_DateTimeInputPreview.setText(datetimepreview);
+    }
+
+Bitmap imageBitmap; byte[] edit_byteArray_imageData; String edit_StringBase64_imageData;
     @Override
     public void onClick(View v)
     {
+        if(v == edit_CIV_ImageSelector)
+        {
+            imagepick.pickGallery(new PickerListener() {
+                @Override
+                public void onPicked(Uri uri, File file, Bitmap bitmap) {
+                    //get image from image selector, convert to bitmap and set it as CIV's image, replacing placeholder
+                    String imagepath = file.getAbsolutePath();
+                    imageBitmap = BitmapFactory.decodeFile(imagepath);
+                    edit_CIV_ImageSelector.setImageBitmap(imageBitmap);
+
+                    Toast.makeText(EditTask.this, "Image successfully added", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         if(v == edit_btn_overwrite)
         {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            edit_byteArray_imageData = stream.toByteArray();
+            edit_StringBase64_imageData = Base64.encodeToString(edit_byteArray_imageData, Base64.DEFAULT);
+
             //TODO: READ COMMENTS LIKE THESE TO KNOW WHERE YOU LEFT
             DatabaseHelper dbh = new DatabaseHelper(EditTask.this);
+            int ocolor = ((ColorDrawable) edit_txv_ColorPickerPreview.getBackground()).getColor();
+            dbh.updateTask(edit_taskId, edit_edt_TitleInput.getText().toString(), edit_edt_DescrInput.getText().toString(), ocolor, DatePickerYear, DatePickerMonth, DatePickerDayofmonth, TimePickerHour, TimePickerMinute, edit_StringBase64_imageData);
 
+            Toast.makeText(EditTask.this, "Your task is created.", Toast.LENGTH_SHORT).show();
+
+            Intent intentToMain = new Intent(EditTask.this, MainActivity.class);
+            startActivity(intentToMain);
+
+            finish();
         }
         if(v == edit_btn_delete)
         {
@@ -187,9 +221,11 @@ public class EditTask extends AppCompatActivity implements View.OnClickListener{
         }
         if(v == edit_btn_DateTimeInput)
         {
-            showTimePickerDialog();
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, dayofmonth);
-            datePickerDialog.show();
+            DialogFragment timep = new com.ablsv.vremia.TimePicker();
+            timep.show(getSupportFragmentManager(), "Time Picker");
+            DialogFragment datep = new com.ablsv.vremia.DatePicker();
+            datep.show(getSupportFragmentManager(), "Date Picker");
+
         }
         if(v == edit_toolbar_img_cancel)
         {

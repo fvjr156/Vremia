@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -146,7 +147,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("task_dayofmonth", Integer.parseInt(String.valueOf(task_dayofmonth.get(position))));
                 intent.putExtra("task_hour", Integer.parseInt(String.valueOf(task_hour.get(position))));
                 intent.putExtra("task_minute", Integer.parseInt(String.valueOf(task_minute.get(position))));
-               // intent.putExtra("task_imagedata", String.valueOf(task_imagedata.get(position)));
+
+                String base64imagedata = String.valueOf(task_imagedata.get(position));
+
+                Base64String b = new Base64String();
+                b.setBase64string(base64imagedata);
+
                 activity.startActivity(intent);
                 //TODO: java.lang.RuntimeException: Failure from system
                 activity.finish();
