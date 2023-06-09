@@ -2,19 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group android:checkableBehavior="single"
-
->   <item
+    <group android:checkableBehavior="single">
+        <item
         android:id="@+id/menu_add"
         android:icon="@drawable/baseline_library_add_24"
         android:title="Add a Task" />
-    <item
-        android:id="@+id/menu_set"
-        android:icon="@drawable/baseline_settings_24"
-        android:title="Settings" />
-    <item
-        android:id="@+id/menu_about"
-        android:icon="@drawable/baseline_person_24"
-        android:title="About" />
+        <item
+            android:id="@+id/menu_deletetasks"
+            android:icon="@drawable/baseline_delete_forever_24"
+            android:title="Delete All Tasks" />
+        <item
+            android:id="@+id/menu_about"
+            android:icon="@drawable/baseline_person_24"
+            android:title="About" />
     </group>
 </menu>

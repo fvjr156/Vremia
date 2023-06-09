@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,15 +25,17 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     FloatingActionButton main_FAB_toAdd;
+    androidx.appcompat.widget.Toolbar tbar;
     RecyclerView main_rcv_taskView;
     TextView main_txv_noData;
     CustomAdapter custom_adapter;
     ImageView main_toolbar_img_delete;
 
     DatabaseHelper myDB;
+    private DrawerLayout dlayout;
     ArrayList<String> task_id,
             task_title,
             task_description,
@@ -52,14 +55,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(sis);
         setContentView(R.layout.main);
 
+        tbar = findViewById(R.id.main_Toolbar);
+        setSupportActionBar(tbar);
+
+        dlayout = findViewById(R.id.main_DrawerLayout);
+        ActionBarDrawerToggle abdt = new ActionBarDrawerToggle(this, dlayout, tbar,
+                R.string.open_drawer, R.string.close_drawer);
+        dlayout.addDrawerListener(abdt);
+        abdt.syncState();
+
+        NavigationView nv = findViewById(R.id.main_navView);
+        nv.setNavigationItemSelectedListener(this);
+
+
         main_txv_noData = findViewById(R.id.main_txv_noData);
         main_rcv_taskView = findViewById(R.id.main_rcv_taskView);
 
         main_FAB_toAdd = findViewById(R.id.main_FAB_toAdd);
-        main_toolbar_img_delete = findViewById(R.id.main_toolbar_img_delete);
-
         main_FAB_toAdd.setOnClickListener(this);
-        main_toolbar_img_delete.setOnClickListener(this);
 
         myDB = new DatabaseHelper(MainActivity.this);
         task_title = new ArrayList<>();
@@ -79,6 +92,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main_rcv_taskView.setAdapter(custom_adapter);
         main_rcv_taskView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(dlayout.isDrawerOpen(GravityCompat.START))
+        {
+            dlayout.closeDrawer(GravityCompat.START);
+        } else  {
+        super.onBackPressed();
+                }
+    }
+
     void storedatainarrays()
     {
         Cursor cursor = myDB.readAllData();
@@ -113,30 +138,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(toAdd);
             finish();
         }
-        if(v == R.id.main_toolbar_img_delete)
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("Delete All Tasks?")
-                    .setIcon(R.drawable.baseline_delete_forever_24)
-                    .setMessage("Are you sure? This action cannot be undone.")
-                    .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                            DatabaseHelper myDB = new DatabaseHelper(MainActivity.this);
-                            myDB.deleteAllData();
-                            dialogInterface.dismiss();
-
-                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    })
-                    .setNegativeButton("NO", null);
-
-            builder.show();
-
-        }
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId())
+        {
+            case R.id.menu_add:
+                Intent toAdd = new Intent(MainActivity.this, AddTask.class);
+                startActivity(toAdd);
+                finish();
+                break;
+            case R.id.menu_deletetasks:
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Delete All Tasks?")
+                        .setIcon(R.drawable.baseline_delete_forever_24)
+                        .setMessage("Are you sure? This action cannot be undone.")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                DatabaseHelper myDB = new DatabaseHelper(MainActivity.this);
+                                myDB.deleteAllData();
+                                dialogInterface.dismiss();
+
+                                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("NO", null);
+
+                builder.show();
+                break;
+            case R.id.menu_about:
+
+                break;
+        }
+        return true;
+    }
 }
