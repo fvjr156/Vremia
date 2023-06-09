@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NavigationView nv = findViewById(R.id.main_navView);
         nv.setNavigationItemSelectedListener(this);
 
-
         main_txv_noData = findViewById(R.id.main_txv_noData);
         main_rcv_taskView = findViewById(R.id.main_rcv_taskView);
 
@@ -172,7 +171,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 builder.show();
                 break;
             case R.id.menu_about:
-
+                    Intent intent = new Intent(MainActivity.this, About.class);
+                    startActivity(intent);
                 break;
         }
         return true;
