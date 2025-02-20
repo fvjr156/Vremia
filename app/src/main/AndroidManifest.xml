@@ -38,7 +38,6 @@
         android:name=".About"
         android:exported="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".Base64String" android:exported="true"/>
 
     </application>
 </manifest>
